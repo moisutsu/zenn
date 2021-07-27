@@ -19,7 +19,7 @@ published: true
 - `cmd+d`で画面分割、`cmd+t`で新規タブ、`cmd+w`でWindowを閉じる
 - Icebergインスパイアの美しいカラーテーマ
 
-![kitty-with-hotkey](https://storage.googleapis.com/zenn-user-upload/dee7c7116a16d5e2582188bb.gif)
+![demo](/images/kitty-for-mac/demo.gif)
 
 # クイックスタート
 
