@@ -97,6 +97,8 @@ map kitty_mod+w close_window
 macos_option_as_alt yes
 macos_quit_when_last_window_closed yes
 macos_traditional_fullscreen yes
+
+confirm_os_window_close 0
 ```
 
 
@@ -116,7 +118,10 @@ hs.hotkey.bind({"ctrl"}, "t", function()
     elseif kitty:isFrontmost() then
         kitty:hide()
     else
-        hs.application.launchOrFocus("/Applications/kitty.app")
+        local space = hs.spaces.focusedSpace()
+        local win = kitty:focusedWindow()
+        hs.spaces.moveWindowToSpace(win, space)
+        win:focus()
     end
 end)
 ```
@@ -251,6 +256,13 @@ macos_traditional_fullscreen yes
 ```
 `macos_traditional_fullscreen`は必須ですが、`macos_option_as_alt`(optionをaltとして扱う)と`macos_quit_when_last_window_closed`(最後のシェルが終了したときにKittyも終了する)は任意です。
 
+### シャットダウン時の確認
+シャットダウン時の確認の設定を行います。
+```
+confirm_os_window_close 0
+```
+上記の設定がない場合は、シャットダウンや再起動のときにKittyが起動していると、Kittyを終了するかどうかの確認が入ります。この確認をなくし、シャットダウンなどのときに自動でKittyを終了するためには、上記の設定が必要です。
+
 最後に以下の内容の設定ファイル`~/.config/kitty/macos-launch-services-cmdline`を作成します。
 ```bash:macos-launch-services-cmdline
 --start-as=fullscreen
@@ -281,9 +293,13 @@ hs.hotkey.bind({"ctrl"}, "t", function()
     elseif kitty:isFrontmost() then
         kitty:hide()
     else
-        hs.application.launchOrFocus("/Applications/kitty.app")
+        local space = hs.spaces.focusedSpace()
+        local win = kitty:focusedWindow()
+        hs.spaces.moveWindowToSpace(win, space)
+        win:focus()
     end
 end)
+
 ```
 この関数ではKittyのプロセスを取得し、最前面にあるなら非表示にし、それ以外なら最前面に表示します。
 また、`hs.hotkey.bind`の第1引数、第2引数を変更することでホットキーを変更することができます。
