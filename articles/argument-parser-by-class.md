@@ -1,5 +1,5 @@
 ---
-title: "[Python] クラスで定義するコマンドラインパーサー"
+title: "【Python】クラスで定義するコマンドラインパーサー"
 emoji: "🐍"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Python", "argparse"]
