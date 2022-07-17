@@ -1,5 +1,5 @@
 ---
-title: "【Python】クラスで定義するコマンドラインパーサー"
+title: "[Python] クラスで定義するコマンドラインパーサー"
 emoji: "🐍"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Python", "argparse"]
@@ -53,7 +53,7 @@ class Args:
     count: int
     text: str
 
-args = Args.from_args()
+args: Args = Args.from_args()
 
 print(args.count)
 print(args.text)
@@ -109,7 +109,7 @@ class Args:
     paths: list[str] = config(help="Input paths")
     flag: bool = config(help="Input flag")
 
-args = Args.from_args()
+args: Args = Args.from_args()
 
 print(args.paths)
 print(args.flag)
